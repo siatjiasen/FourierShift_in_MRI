@@ -26,8 +26,8 @@ for iter_k_os = 1:1:length(k_os)    % simulate k-space sampling
     kspace_os(iter_k_os) = sum(im'.*exp(-1i*2*pi*x*k_os(iter_k_os)));
 end
 figure;
-subplot(2,1,1);plot(k_os,abs(kspace_os),'k-');axis([min(k_os),max(k_os),0,1.5*max(abs(kspace_os))]);title('10x oversampled kspace: abs');
-subplot(2,1,2);plot(k_os,angle(kspace_os),'k.');axis([min(k_os),max(k_os),-4,4]);title('10x oversampled kspace: phase');
+subplot(2,1,1);plot(k_os,abs(fftshift(kspace_os)),'k-');axis([min(k_os),max(k_os),0,1.5*max(abs(kspace_os))]);title('10x oversampled kspace: abs');
+subplot(2,1,2);plot(k_os,angle(fftshift(kspace_os)),'k.');axis([min(k_os),max(k_os),-4,4]);title('10x oversampled kspace: phase');
 
 
 %% Simulate Nyquist sampled kspace
@@ -38,8 +38,8 @@ for iter_k = 1:1:length(k_nyquist)  % simulate k-space sampling via DFT of image
     kspace_nyquist(iter_k) = sum(im'.*exp(-1i*2*pi*x*k_nyquist(iter_k)));
 end
 figure;
-subplot(2,1,1);plot(k_nyquist,abs(kspace_nyquist));axis([min(k_nyquist),max(k_nyquist),0,1.5*max(abs(kspace_nyquist))]);title('Nyquist sampled kspace: abs');
-subplot(2,1,2);plot(k_nyquist,angle(kspace_nyquist),'k.');axis([min(k_nyquist),max(k_nyquist),-4,4]);title('Nyquist sampled kspace: phase');
+subplot(2,1,1);plot(k_nyquist,abs(fftshift(kspace_nyquist)));axis([min(k_nyquist),max(k_nyquist),0,1.5*max(abs(kspace_nyquist))]);title('Nyquist sampled kspace: abs');
+subplot(2,1,2);plot(k_nyquist,angle(fftshift(kspace_nyquist)),'k.');axis([min(k_nyquist),max(k_nyquist),-4,4]);title('Nyquist sampled kspace: phase');
 
 im_recon_nyquist = zeros(size(im));
 for iter_im = 1:1:length(im);       % inverse Fourier transform of kspace gives the image
@@ -63,8 +63,8 @@ for iter_k = 1:1:length(k_ds)      % simulate k-space sampling
     kspace_ds(iter_k) = sum(im'.*exp(-1i*2*pi*x*k_ds(iter_k)));
 end
 figure;
-subplot(2,1,1);plot(k_ds,abs(kspace_ds));axis([min(k_ds),max(k_ds),0,1.5*max(abs(kspace_ds))]);title('2x downsampled kspace: abs');
-subplot(2,1,2);plot(k_ds,angle(kspace_ds),'k.');axis([min(k_ds),max(k_ds),-3.5,3.5]);title('2x downsampled kspace: phase');
+subplot(2,1,1);plot(k_ds,abs(fftshift(kspace_ds)),'-k.');axis([min(k_ds),max(k_ds),0,1.5*max(abs(kspace_ds))]);title('2x downsampled kspace: abs');
+subplot(2,1,2);plot(k_ds,angle(fftshift(kspace_ds)),'k.');axis([min(k_ds),max(k_ds),-3.5,3.5]);title('2x downsampled kspace: phase');
 
 knum_plot = 25;
 figure;plot(k_ds(1:1:knum_plot),abs(kspace_ds(1:1:knum_plot)),'ko');
@@ -93,8 +93,8 @@ for iter_k = 1:1:length(k_ds_shift)     % simulate k-space sampling
     kspace_ds_shift(iter_k) = sum(im'.*exp(-1i*2*pi*x*k_ds_shift(iter_k)));
 end
 figure;
-subplot(2,1,1);plot(k_ds_shift,abs(kspace_ds_shift));axis([min(k_ds_shift),max(k_ds_shift),0,1.5*max(abs(kspace_ds_shift))]);title('2x downsampled&shifted kspace: abs');
-subplot(2,1,2);plot(k_ds_shift,angle(kspace_ds_shift),'k.');axis([min(k_ds_shift),max(k_ds_shift),-4,4]);title('2x downsampled&shifted kspace: phase');
+subplot(2,1,1);plot(k_ds_shift,abs(fftshift(kspace_ds_shift)),'-k.');axis([min(k_ds_shift),max(k_ds_shift),0,1.5*max(abs(kspace_ds_shift))]);title('2x downsampled&shifted kspace: abs');
+subplot(2,1,2);plot(k_ds_shift,angle(fftshift(kspace_ds_shift)),'k.');axis([min(k_ds_shift),max(k_ds_shift),-4,4]);title('2x downsampled&shifted kspace: phase');
 
 knum_plot = 25;
 figure;plot(k_ds_shift(1:1:knum_plot),abs(kspace_ds_shift(1:1:knum_plot)),'ks');
