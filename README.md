@@ -1,3 +1,4 @@
+
 # Bunched-Phase-Encoding
 
 Simulating Bunched Phase Encoding (BPE). 
@@ -6,3 +7,5 @@ Reference:
 
 The matlab code is recommended to be published via MATLAB publishing. -> 
 http://www.engda.com/bunched_phase_encoding.html
+http://www.engda.com/BPE1D_Generalization.html
+http://www.engda.com/BPE2D_Simulation.html
